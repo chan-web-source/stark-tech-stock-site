@@ -27,6 +27,7 @@ body {
   font-size: var(--main-font-size);
   font-family: "Roboto", sans-serif;
   background-color: #f6f9fb;
+  overflow-x: hidden;
 }
 
 iframe {
