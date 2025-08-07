@@ -1,0 +1,422 @@
+.container {
+ padding: 24px 16px;
+ background: linear-gradient(135deg, #f8fafc);
+ min-height: 100vh;
+}
+
+.container>* {
+ font-size: 0.8rem
+}
+
+.header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 24px;
+ padding: 20px;
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titleSection {
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+}
+
+.title {
+ display: flex;
+ align-items: center;
+ font-weight: 700;
+ color: #1a365d;
+ margin: 0;
+ font-size: 0.8rem;
+}
+
+.icon {
+ margin-right: 12px;
+ color: #1976d2;
+ font-size: 0.8rem;
+}
+
+.priceInfo {
+ display: flex;
+ align-items: center;
+ gap: 12px;
+}
+
+.currentPrice {
+ color: #2d3748;
+ font-weight: 500;
+ font-size: 0.8rem;
+}
+
+.priceChange {
+ background-color: #22c55e;
+ color: white;
+ font-weight: 600;
+ font-size: 0.8rem;
+}
+
+.followButton {
+ background-color: #1976d2;
+ color: white;
+ padding: 8px 24px;
+ border-radius: 8px;
+ font-weight: 600;
+ font-size: 0.8rem;
+}
+
+.followButton:hover {
+ background-color: #1565c0;
+}
+
+/* Chart Section */
+.chartSection {
+ margin-bottom: 24px;
+ border-radius: 12px;
+ background: white;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chartHeader {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 20px;
+}
+
+.chartTabs {
+ box-shadow: none;
+}
+
+.activeTab {
+ background-color: #1976d2;
+ color: white;
+ font-size: 0.8rem;
+}
+
+.inactiveTab {
+ background-color: #e0e0e0;
+ color: #666;
+ font-size: 0.8rem;
+}
+
+.timeRange {
+ border-color: #1976d2;
+ color: #1976d2;
+ font-size: 0.8rem;
+}
+
+.chartContainer {
+ width: 100%;
+ height: 400px;
+ margin-top: 20px;
+}
+
+.customTooltip {
+ background: white;
+ border: 1px solid #ccc;
+ border-radius: 8px;
+ padding: 12px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltipLabel {
+ font-weight: 600;
+ margin-bottom: 8px;
+ color: #333;
+ font-size: 0.8rem;
+}
+
+.tooltipRevenue {
+ color: #fbbf24;
+ margin: 4px 0;
+ font-size: 0.8rem;
+}
+
+.tooltipStock {
+ color: #ef4444;
+ margin: 4px 0;
+ font-size: 0.8rem;
+}
+
+/* Data Section */
+.dataSection {
+ margin-bottom: 24px;
+ border-radius: 12px;
+ background: white;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeader {
+ margin-bottom: 20px;
+}
+
+/* Tab Group Styling */
+.tabGroup {
+ box-shadow: none;
+ border-radius: 0;
+}
+
+.activeDataTab {
+ background-color: #2196f3 !important;
+ color: white !important;
+ border-radius: 4px 4px 0 0 !important;
+ border: none !important;
+ font-weight: 500;
+ padding: 8px 16px;
+ text-transform: none;
+ font-size: 0.8rem;
+}
+
+.inactiveDataTab {
+ background-color: #e0e0e0 !important;
+ color: #666 !important;
+ border-radius: 4px 4px 0 0 !important;
+ border: none !important;
+ font-weight: 500;
+ padding: 8px 16px;
+ text-transform: none;
+ font-size: 0.8rem;
+}
+
+/* Table Container */
+.tableContainer {
+ width: 100%;
+ overflow-x: auto;
+ border: 1px solid #d0d0d0;
+ border-radius: 4px;
+ background: white;
+ margin: 16px 0;
+}
+
+/* Financial Table */
+.financialTable {
+ width: 100%;
+ border-collapse: collapse;
+ font-family: inherit;
+ background: white;
+}
+
+.financialTable th,
+.financialTable td {
+ border: 1px solid #d0d0d0;
+ padding: 12px 16px;
+ text-align: center;
+ font-size: 0.8rem;
+}
+
+/* Header Cells */
+.headerCell {
+ background-color: #f5f5f5 !important;
+ font-weight: 500;
+ color: #333;
+ text-align: center;
+ min-width: 120px;
+}
+
+.dataHeaderCell {
+ background-color: #f9f9f9 !important;
+ font-weight: 500;
+ color: #333;
+ text-align: center;
+ min-width: 100px;
+}
+
+/* Row Header Cells (left column) */
+.rowHeaderCell {
+ background-color: #f5f5f5 !important;
+ font-weight: 500;
+ color: #333;
+ text-align: left;
+ padding-left: 16px;
+ min-width: 180px;
+}
+
+/* Data Cells */
+.dataCell {
+ background-color: white !important;
+ color: #333;
+ text-align: right;
+ font-weight: 400;
+ padding-right: 16px;
+}
+
+/* Scrollbar Container */
+.scrollbarContainer {
+ position: relative;
+ height: 12px;
+ background-color: #f5f5f5;
+ border-top: 1px solid #d0d0d0;
+}
+
+.scrollbar {
+ position: absolute;
+ right: 20px;
+ top: 2px;
+ width: 60px;
+ height: 8px;
+ background-color: #bbb;
+ border-radius: 4px;
+}
+
+/* Footer Note */
+.footerNote {
+ display: flex;
+ justify-content: flex-end;
+ margin-top: 12px;
+}
+
+.dataNote {
+ color: #666 !important;
+ font-size: 0.8rem !important;
+ text-align: right;
+ line-height: 1.4;
+}
+
+/* Ranking Section */
+.rankingSection {
+ border-radius: 12px;
+ background: white;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+ font-weight: 600;
+ color: #2d3748;
+ margin-bottom: 24px;
+ padding-bottom: 12px;
+ border-bottom: 2px solid #e2e8f0;
+ font-size: 0.8rem;
+}
+
+.rankingGrid {
+ margin-top: 20px;
+}
+
+
+.rankingCard {
+ height: 100%;
+ border-radius: 12px;
+ border: 1px solid #e2e8f0;
+ transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rankingCard:hover {
+ transform: translateY(-4px);
+ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.rankingHeader {
+ display: flex;
+ justify-content: space-between;
+ align-items: flex-start;
+ margin-bottom: 12px;
+}
+
+.categoryName {
+ font-weight: 600;
+ color: #2d3748;
+ flex: 1;
+ font-size: 0.8rem;
+}
+
+.rankBadge {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ color: white;
+ padding: 8px 12px;
+ border-radius: 8px;
+ min-width: 60px;
+}
+
+.rankNumber {
+ font-weight: 700;
+ line-height: 1;
+ margin: 0;
+ font-size: 0.8rem;
+}
+
+.rankDescription {
+ color: #4a5568;
+ margin-bottom: 8px;
+ font-size: 0.8rem;
+}
+
+.totalCompanies {
+ color: #718096;
+ font-size: 0.8rem;
+ margin-bottom: 12px;
+}
+
+.viewRankingButton {
+ color: #1976d2;
+ font-size: 0.8rem;
+ padding: 4px 8px;
+ text-transform: none;
+}
+
+.viewRankingButton:hover {
+ background-color: #e3f2fd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ .container {
+  padding: 16px 8px;
+ }
+
+
+ .header {
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+ }
+
+ .chartHeader {
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+ }
+
+ .chartContainer {
+  height: 300px;
+ }
+
+ .dataGridContainer {
+  height: 300px;
+ }
+
+ .financialTable th,
+ .financialTable td {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+ }
+
+ .headerCell,
+ .rowHeaderCell {
+  min-width: 100px;
+ }
+
+ .dataHeaderCell {
+  min-width: 80px;
+ }
+}
+
+@media (max-width: 480px) {
+ .title {
+  font-size: 0.8rem;
+ }
+
+ .currentPrice {
+  font-size: 0.8rem;
+ }
+
+ .rankingGrid {
+  margin-top: 16px;
+ }
+}
