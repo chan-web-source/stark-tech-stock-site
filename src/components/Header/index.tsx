@@ -61,8 +61,11 @@ const Header: React.FC = () => {
         {/* Navigation Menu */}
         <Box component="nav" className={style.navigationMenu}>
           {navItems.map((item) => (
-            <Box key={item.name} className={style.navItemContainer}>
-              <Button
+            <Box
+              key={item.name}
+              className={`${style.navItemContainer} ${activeMenu === item.name ? style.activeItem : ''}`}
+            >
+              <a
                 className={`${style.navButton} ${activeMenu === item.name ? style.active : ''}`}
                 onClick={(e) => {
                   handleNavClick(item.name);
@@ -70,11 +73,10 @@ const Header: React.FC = () => {
                     handleDropdownOpen(e, item.name);
                   }
                 }}
-                endIcon={item.hasDropdown ? <KeyboardArrowDown className={style.dropdownArrow} /> : null}
-                disableRipple
               >
                 {item.name}
-              </Button>
+                {item.hasDropdown ? <KeyboardArrowDown className={style.dropdownArrow} /> : null}
+              </a>
 
               {item.hasDropdown && (
                 <Menu

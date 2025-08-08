@@ -48,6 +48,7 @@
 
 .mainMenuItem.active {
     background-color: #ffffff !important;
+    color: #2196f3 !important;
 }
 
 .activeIndicator {
@@ -96,7 +97,9 @@
 }
 
 .activeSubItem {
-    background-color: #e3f2fd !important;
+    font-weight: 700 !important;
+    border-left: 3px solid #2196f3 !important;
+    color: #2196f3 !important;
 }
 
 .activeSubItem .subMenuText span {

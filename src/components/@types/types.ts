@@ -5,7 +5,15 @@ interface Wallet {
   balances: Record<CurrencyCode, number>; // Maps specific currency codes to their balances
 }
 
-type LeftPanelMenuItem = {
+interface SubItem {
+  id: string;
+  name: string;
+  route?: string;
+  icon?: string;
+  path?: string;
+};
+
+interface LeftPanelMenuItem {
   id: string;
   name: string;
   route?: string;
@@ -24,3 +32,10 @@ interface DateGroupNewsItem {
   newsItems?: NewsItem[];
 }
 
+export type {
+  Wallet,
+  SubItem,
+  LeftPanelMenuItem,
+  NewsItem,
+  DateGroupNewsItem,
+};

@@ -4,7 +4,8 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: #1976d2 !important;
+  background-color: #ffffff !important;
+  color: grey;
   border-bottom: 1px solid #1565c0;
   z-index: 99;
   height: 64px;
@@ -20,6 +21,7 @@
   align-items: center !important;
   gap: 32px !important;
   min-height: 64px !important;
+  color: grey;
 }
 
 /* Logo部分 */
@@ -43,7 +45,7 @@
 .logoText {
   font-size: 18px !important;
   font-weight: 600 !important;
-  color: white !important;
+  color: grey !important;
 }
 
 /* 导航菜单 */
@@ -58,10 +60,22 @@
   position: relative;
 }
 
+.activeItem::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: -10px;
+  /* 放在文字下方 */
+  height: 6px;
+  background-color: #1976d2;
+  border-radius: 2px;
+}
+
 .navButton {
   background: none !important;
   border: none !important;
-  color: white !important;
+  color: grey !important;
   font-size: 16px !important;
   font-weight: 500 !important;
   padding: 8px 16px !important;
@@ -82,8 +96,7 @@
 }
 
 .navButton.active {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  color: white !important;
+  color: #1976d2 !important;
 }
 
 .navButton.active:hover {
@@ -177,7 +190,7 @@
 .loginButton {
   background: none !important;
   border: none !important;
-  color: white !important;
+  color: grey !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   cursor: pointer;

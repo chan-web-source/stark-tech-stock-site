@@ -3,24 +3,40 @@
 import { type API } from '../utils/api.types';
 
 export const getStockData = async (
-  startDate?: string,
-  endDate?: string
+  startDate: string = "2020-04-02",
+  endDate: string = "2020-04-08"
 ): Promise<API.Stock[]> => {
   try {
-    const response = await fetch('https://api.finmindtrade.com/', {
+    const url = import.meta.env.VITE_API_BASE_URL || '';
+    const token = import.meta.env.VITE_FINMIND_TOKEN || '';
+
+    const queryParams = new URLSearchParams({
+      dataset: "TaiwanStockPriceAdj",
+      data_id: "2330",
+      start_date: "2025-07-01",
+      end_date: "2025-07-08"
+    });
+
+    // 使用本地代理端点避免CORS问题
+    const proxyUrl = '/api/stock-data';
+
+    const response = await fetch(`${proxyUrl}?${queryParams.toString()}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': process.env.REACT_APP_FINMIND_API_KEY || ''
-      }
+        'Authorization': `Bearer ${token}`,
+      },
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
     }
 
-    const data = await response.json();
-    return data;
+    const json = await response.json();
+    console.log(json, '==json');
+    // FinMind returns shape: { msg, status, data }
+    return json?.data ?? [];
   } catch (error) {
     console.error('Error fetching stock data:', error);
     throw error;
@@ -28,5 +44,3 @@ export const getStockData = async (
 };
 
 // -- Homepage Matches --
-
-type Stock = API.Stock;

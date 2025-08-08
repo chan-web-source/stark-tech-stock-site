@@ -12,26 +12,40 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- margin-bottom: 24px;
- padding: 20px;
- background: white;
- border-radius: 12px;
- box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ margin-bottom: 12px;
+ padding: 10px 12px;
+ background: #ffffff;
+ border: 1px solid #e5e5e5;
+ border-radius: 4px;
 }
 
-.titleSection {
- display: flex;
- flex-direction: column;
- gap: 8px;
-}
-
-.title {
+.titleRow {
  display: flex;
  align-items: center;
+ gap: 12px;
+}
+
+.stockCode {
  font-weight: 700;
- color: #1a365d;
- margin: 0;
- font-size: 0.8rem;
+ color: #222;
+ font-size: 18px;
+}
+
+.stockName {
+ font-weight: 700;
+ color: #222;
+ font-size: 18px;
+}
+
+.priceDate {
+ color: #4a4a4a;
+ font-size: 14px;
+}
+
+.priceDelta {
+ color: #22c55e;
+ font-weight: 700;
+ font-size: 14px;
 }
 
 .icon {
@@ -60,12 +74,12 @@
 }
 
 .followButton {
- background-color: #1976d2;
- color: white;
- padding: 8px 24px;
- border-radius: 8px;
- font-weight: 600;
- font-size: 0.8rem;
+ background-color: #0b74de;
+ color: #fff;
+ padding: 6px 16px;
+ border-radius: 6px;
+ font-weight: 700;
+ font-size: 14px;
 }
 
 .followButton:hover {
@@ -186,10 +200,11 @@
 .tableContainer {
  width: 100%;
  overflow-x: auto;
- border: 1px solid #d0d0d0;
- border-radius: 4px;
- background: white;
- margin: 16px 0;
+ border: none;
+ border-radius: 0;
+ background: transparent;
+ margin: 0;
+ padding: 0;
 }
 
 /* Financial Table */
@@ -202,7 +217,7 @@
 
 .financialTable th,
 .financialTable td {
- border: 1px solid #d0d0d0;
+ border: 1px solid #e3e7ea;
  padding: 12px 16px;
  text-align: center;
  font-size: 0.8rem;
@@ -210,16 +225,18 @@
 
 /* Header Cells */
 .headerCell {
- background-color: #f5f5f5 !important;
- font-weight: 500;
+ background-color: #f3f6f9 !important;
+ /* header 第一列底色 */
+ font-weight: 600;
  color: #333;
  text-align: center;
  min-width: 120px;
 }
 
 .dataHeaderCell {
- background-color: #f9f9f9 !important;
- font-weight: 500;
+ background-color: #f3f6f9 !important;
+ /* 與第一列一致 */
+ font-weight: 600;
  color: #333;
  text-align: center;
  min-width: 100px;
@@ -227,7 +244,8 @@
 
 /* Row Header Cells (left column) */
 .rowHeaderCell {
- background-color: #f5f5f5 !important;
+ background-color: #f6f8fb !important;
+ /* 左側欄底色 */
  font-weight: 500;
  color: #333;
  text-align: left;
@@ -242,6 +260,15 @@
  text-align: right;
  font-weight: 400;
  padding-right: 16px;
+}
+
+/* 依照截圖：第一筆資料列白色、第二筆資料列淡灰色，形成條紋效果 */
+.financialTable tbody tr:nth-child(1) td {
+ background-color: #ffffff !important;
+}
+
+.financialTable tbody tr:nth-child(2) td {
+ background-color: #f6f8fb !important;
 }
 
 /* Scrollbar Container */
@@ -279,8 +306,8 @@
 /* Ranking Section */
 .rankingSection {
  border-radius: 12px;
- background: white;
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ padding: 0;
+ margin: 0;
 }
 
 .sectionTitle {
@@ -288,20 +315,20 @@
  color: #2d3748;
  margin-bottom: 24px;
  padding-bottom: 12px;
- border-bottom: 2px solid #e2e8f0;
  font-size: 0.8rem;
 }
 
 .rankingGrid {
  margin-top: 20px;
+
 }
 
 
 .rankingCard {
  height: 100%;
- border-radius: 12px;
- border: 1px solid #e2e8f0;
- transition: transform 0.2s ease, box-shadow 0.2s ease;
+ border-radius: 4px;
+ border: 1px solid #e6e6e6;
+ box-shadow: none;
 }
 
 .rankingCard:hover {
@@ -309,42 +336,67 @@
  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.rankingHeader {
+.rankingItem {
  display: flex;
+ align-items: center;
  justify-content: space-between;
+ gap: 16px;
+}
+
+.verticalDivider {
+ width: 1px;
+ height: 48px;
+ background-color: #e6e6e6;
+ display: inline-block;
+}
+
+.rankingInfo {
+ display: flex;
+ flex-direction: column;
  align-items: flex-start;
- margin-bottom: 12px;
+ gap: 8px;
+
 }
 
 .categoryName {
- font-weight: 600;
- color: #2d3748;
- flex: 1;
- font-size: 0.8rem;
+ font-weight: 700;
+ color: #333;
+ font-size: 16px;
 }
 
-.rankBadge {
+.rankRight {
  display: flex;
  flex-direction: column;
- align-items: center;
- background: linear-gradient(135deg, #667eea 0%, #406dde 100%);
- color: white;
- padding: 8px 12px;
- border-radius: 8px;
- min-width: 60px;
+ align-items: flex-start;
 }
 
-.rankNumber {
+.rankNumberRow {
+ display: flex;
+ align-items: baseline;
+ gap: 4px;
+}
+
+.rankNumberLarge {
+ font-size: 32px;
  font-weight: 700;
- line-height: 1;
- margin: 0;
- font-size: 0.8rem;
+ color: #333;
+}
+
+.rankUnit {
+ color: #666;
+ font-size: 14px;
+}
+
+.rankSub {
+ color: #777;
+ font-size: 14px;
+ margin-top: 8px;
 }
 
 .rankDescription {
  color: #4a5568;
  margin-bottom: 8px;
- font-size: 0.8rem;
+ font-size: 0.6rem;
 }
 
 .totalCompanies {
@@ -353,15 +405,13 @@
  margin-bottom: 12px;
 }
 
-.viewRankingButton {
+.viewRankingLink {
  color: #1976d2;
- font-size: 0.8rem;
- padding: 4px 8px;
+ padding: 0;
+ min-width: auto;
  text-transform: none;
-}
-
-.viewRankingButton:hover {
- background-color: #e3f2fd;
+ font-size: 14px;
+ text-align: left;
 }
 
 /* Responsive Design */
@@ -375,6 +425,7 @@
   flex-direction: column;
   gap: 16px;
   text-align: center;
+  background-color: #fafafa;
  }
 
  .chartHeader {

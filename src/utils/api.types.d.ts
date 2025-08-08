@@ -4,7 +4,7 @@ interface RestResponse<T> {
   data: T;
 }
 
-declare namespace API {
+export namespace API {
   export interface Stock {
     id: string;
     startTime: number;

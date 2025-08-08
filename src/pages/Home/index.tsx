@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next"
 import { getStockData } from "@/service/dataService"
 import LeftPanel from "@/components/LeftPanel"
 import StockDashboard from "../StockComponent"
+import { API } from "@/utils/api.types"
 
 const Home: React.FC = () => {
 
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
 
 
   // Main
-  const [stockData, setStockData] = useState<Stock[]>([]);
+  const [stockData, setStockData] = useState<API.Stock[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -62,7 +63,6 @@ const Home: React.FC = () => {
       <Spacer space={55} />
 
       <Footer />
-      <Spacer space={60} />
     </>
   )
 };
