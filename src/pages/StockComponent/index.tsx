@@ -9,7 +9,6 @@ import {
  Grid,
  Button,
  ButtonGroup,
- Chip,
 } from '@mui/material';
 import {
  ComposedChart,
@@ -24,9 +23,10 @@ import {
 } from 'recharts';
 import styles from './styles.module.css';
 import { chartData, industryRankings, monthlyRevenueData } from '../../data/stockData'
+import { API } from '@/utils/api.types';
 // Stock performance and revenue data
 
-const StockDashboard: React.FC = () => {
+const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
  const [stockDataActiveTab, setStockDataActiveTab] = React.useState('detailed');
  const [stockChartActiveTab, setStockChartActiveTab] = React.useState('monthly');
 

@@ -1,4 +1,6 @@
+import { RestResponse } from '@/utils/api.types';
 import { apiAuth as api } from '../utils/api';
+import { Wallet } from '@/components/@types/types';
 
 interface LoginRequest {
   username: string;
@@ -61,7 +63,7 @@ const authService = {
       throw error;
     }
   },
-  
+
 
   /**
    * Refresh the access token using the refresh token
@@ -122,7 +124,7 @@ const authService = {
     const token = this.getAccessToken();
     console.log("Get token: ", token);
     if (!token) return false;
-    
+
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       console.log("Token valid? ", payload.exp * 1000 > Date.now());
@@ -139,24 +141,24 @@ const authService = {
   validateTokens: async (): Promise<boolean> => {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    
+
     // If no tokens exist, they're invalid
     if (!accessToken || !refreshToken) {
       authService.clearTokens();
       return false;
     }
-    
+
     try {
       // Check if access token is expired
       const payload = JSON.parse(atob(accessToken.split('.')[1]));
       const isExpired = payload.exp * 1000 <= Date.now();
-      
+
       if (isExpired) {
         console.log("Token expired, refreshing...");
         // Try to refresh the token
         await authService.refreshAuth();
       }
-      
+
       return true;
     } catch (error) {
       // If any error occurs during validation/refresh, clear tokens

@@ -9,6 +9,7 @@ import { getStockData } from "@/service/dataService"
 import LeftPanel from "@/components/LeftPanel"
 import StockDashboard from "../StockComponent"
 import { API } from "@/utils/api.types"
+import Loading from "@/components/Loading"
 
 const Home: React.FC = () => {
 
@@ -43,7 +44,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <>
+    isLoading ? <Loading /> : <>
       <Header />
       <PromoCodeBlock
         promoText={t('home.promoText')}
@@ -52,7 +53,7 @@ const Home: React.FC = () => {
         <LeftPanel />
         <section className="container">
           <h1 className={style.heading}>{ }</h1>
-          <StockDashboard />
+          <StockDashboard stockData={stockData} />
           <div className="contentWrapper">
             <div className="mainContent">
               <Spacer space={20} />

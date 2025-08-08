@@ -3,12 +3,7 @@ import styles from './style.module.css';
 import { FOOTER_DATA } from '@/constants';
 import {
   Box,
-  Container,
-  Grid,
   Typography,
-  Link,
-  Stack,
-  Divider,
 } from '@mui/material';
 
 const Footer: React.FC = () => {

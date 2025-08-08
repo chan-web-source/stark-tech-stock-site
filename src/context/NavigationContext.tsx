@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from 'react';
-import { GAME_MENU_ITEMS } from '@/constants';
 import { capitalize } from '@/utils/string.utils';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';

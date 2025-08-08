@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
 import { Box, Typography, Button } from '@mui/material';
 import styles from './style.module.css';
 
@@ -10,7 +9,6 @@ interface PromoProps {
 }
 
 const PromoCodeBlock: React.FC<PromoProps> = () => {
-  const { t } = useTranslation();
 
   const handleContinueClick = () => {
     // 处理继续按钮点击

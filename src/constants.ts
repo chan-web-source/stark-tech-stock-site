@@ -6,9 +6,6 @@ export const BOOKMAKER_MAP: Record<number, string> = {
 
 // Functions that return current language constants
 
-export const GAME_MENU_ITEMS = [
-
-];
 
 export const LEFT_PANEL_SUB_ITEMS = [
 

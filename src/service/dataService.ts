@@ -13,12 +13,12 @@ export const getStockData = async (
     const queryParams = new URLSearchParams({
       dataset: "TaiwanStockPriceAdj",
       data_id: "2330",
-      start_date: "2025-07-01",
-      end_date: "2025-07-08"
+      start_date: startDate,
+      end_date: endDate
     });
 
     // 使用本地代理端点避免CORS问题
-    const proxyUrl = '/api/stock-data';
+    const proxyUrl = `${url}/api/stock-data`;
 
     const response = await fetch(`${proxyUrl}?${queryParams.toString()}`, {
       method: 'GET',
@@ -42,5 +42,3 @@ export const getStockData = async (
     throw error;
   }
 };
-
-// -- Homepage Matches --

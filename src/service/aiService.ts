@@ -1,3 +1,4 @@
+import { RestResponse } from '@/utils/api.types';
 import { apiOpen } from '../utils/api';
 
 interface ChatRequest {

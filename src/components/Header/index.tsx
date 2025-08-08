@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -10,7 +9,6 @@ import {
   MenuItem,
   Box,
   Typography,
-  IconButton
 } from "@mui/material";
 import {
   KeyboardArrowDown,
@@ -18,9 +16,7 @@ import {
   AccountCircle
 } from "@mui/icons-material";
 import style from "./style.module.css";
-import LeftPanel from "../LeftPanel";
 const Header: React.FC = () => {
-  const { t } = useTranslation();
   const [activeMenu, setActiveMenu] = useState('個股');
   const [anchorEl, setAnchorEl] = useState<{ [key: string]: HTMLElement | null }>({});
 

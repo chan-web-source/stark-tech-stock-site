@@ -5,7 +5,6 @@ import './index.css'
 import './i18n/i18n'
 import Auth from './pages/Auth/index.tsx'
 import { AuthProvider } from './components/auth/AuthContext.tsx'
-import { ProtectedRoute } from './components/auth/ProtectedRoute.tsx'
 import Home from './pages/Home/index.tsx'
 import { NavigationContextProvider } from './context/NavigationContext.tsx'
 
