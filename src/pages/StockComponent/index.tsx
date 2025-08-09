@@ -19,30 +19,63 @@ import {
  CartesianGrid,
  Tooltip,
  Legend,
- ResponsiveContainer
+ ResponsiveContainer,
+ Label,
 } from 'recharts';
 import styles from './styles.module.css';
-import { chartData, industryRankings, monthlyRevenueData } from '../../data/stockData'
+import { industryRankings, monthlyOverviewData } from '../../data/stockData'
 import { API } from '@/utils/api.types';
+import '@/index.css'
 // Stock performance and revenue data
+
+const buildMonthlyChartData = () => {
+ const baseYear = 2020; // index 0 對應 2020-01
+ const priceArr = monthlyOverviewData.monthly.Price.data
+ const revenueArr = monthlyOverviewData.monthly.Revenue.data
+ const yoyArr = monthlyOverviewData.monthly.RevenueYOY.data
+
+ const points: Array<{ label: string; tooltipKey: string; revenue: number | null; yoy: number | null; price: number | null }> = []
+
+ const total = Math.max(priceArr.length, revenueArr.length, yoyArr.length)
+ for (let i = 0; i < total; i += 1) {
+  const priceVal = priceArr[i]?.[1] as string | number | undefined
+  const revenueVal = revenueArr[i]?.[1] as string | number | undefined
+  const yoyVal = yoyArr[i]?.[1] as string | number | undefined
+
+  const year = baseYear + Math.floor(i / 12)
+  const month = (i % 12) + 1
+  const mm = String(month).padStart(2, '0')
+  const label = `${year}/${mm}`
+  const tooltipKey = `${year}${mm}`
+
+  points.push({
+   label,
+   tooltipKey,
+   revenue: typeof revenueVal === 'number' ? revenueVal : (typeof revenueVal === 'string' && !Number.isNaN(parseFloat(revenueVal))) ? parseFloat(revenueVal) : null,
+   yoy: typeof yoyVal === 'number' ? yoyVal : (typeof yoyVal === 'string' && !Number.isNaN(parseFloat(yoyVal))) ? parseFloat(yoyVal) : null,
+   price: typeof priceVal === 'number' ? priceVal : (typeof priceVal === 'string' && !Number.isNaN(parseFloat(priceVal))) ? parseFloat(priceVal) : null,
+  })
+ }
+
+ // 近 60 個月（約 5 年），且存在營收資料
+ const last60 = points.filter(p => p.revenue !== null).slice(-60)
+ return last60
+}
 
 const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
  const [stockDataActiveTab, setStockDataActiveTab] = React.useState('detailed');
  const [stockChartActiveTab, setStockChartActiveTab] = React.useState('monthly');
+ const monthlyChartData = React.useMemo(buildMonthlyChartData, [])
 
  // 保留占位符以便后续接入真实表格列
 
- const CustomTooltip = ({ active, payload, label }: any) => {
+ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
+   const dataPoint = payload[0]?.payload
+   const price = dataPoint?.price
    return (
     <div className={styles.customTooltip}>
-     <p className={styles.tooltipLabel}>{`${label}`}</p>
-     <p className={styles.tooltipRevenue}>
-      {`每月營收: ${payload[0]?.value?.toLocaleString()} 億`}
-     </p>
-     <p className={styles.tooltipStock}>
-      {`月均價: ${payload[1]?.value} 元`}
-     </p>
+     <p className={styles.tooltipLabel}>{`${dataPoint?.tooltipKey}的月均價 = ${price ?? '-'}`}</p>
     </div>
    );
   }
@@ -69,30 +102,44 @@ const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
     <CardContent>
 
      <Box className={styles.sectionHeader}>
-      <ButtonGroup variant="contained" size="small" className={styles.tabGroup}>
+      <ButtonGroup size="small" className={styles.tabGroup}>
+       <Box className={styles.topButton}>
+
+        <Button
+         className={stockChartActiveTab === 'monthly' ? styles.activeDataTab : styles.inactiveDataTab}
+         onClick={() => setStockChartActiveTab('monthly')}
+        >
+         每月營收
+        </Button>
+        <Typography className={styles.topButtonText}>千元</Typography>
+
+       </Box>
        <Button
         className={stockChartActiveTab === 'monthly' ? styles.activeDataTab : styles.inactiveDataTab}
         onClick={() => setStockChartActiveTab('monthly')}
        >
-        每月營收
+        近5年
        </Button>
-       <Button
+       {/* <Button
         className={stockChartActiveTab === 'eps' ? styles.activeDataTab : styles.inactiveDataTab}
         onClick={() => setStockChartActiveTab('eps')}
        >
         月營股營收
-       </Button>
+       </Button> */}
       </ButtonGroup>
      </Box>
 
      <Box className={styles.chartContainer}>
       <ResponsiveContainer width="100%" height={400}>
-       <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+       <ComposedChart data={monthlyChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
         <XAxis
-         dataKey="year"
+         dataKey="label"
          axisLine={false}
          tickLine={false}
+         interval={0}
+         ticks={monthlyChartData.filter(d => d.label.endsWith('/01')).map(d => d.label)}
+         tickFormatter={(v: string) => v.slice(0, 4)}
          tick={{ fontSize: 12, fill: '#666' }}
         />
         <YAxis
@@ -101,32 +148,38 @@ const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
          axisLine={false}
          tickLine={false}
          tick={{ fontSize: 12, fill: '#666' }}
-         label={{ value: '', angle: 0, position: 'insideTopLeft' }}
-        />
+         tickFormatter={(v: number) => v.toLocaleString('en-US')}
+        >
+         {/* <Label value="千元" position="top"
+          offset={30}
+         /> */}
+        </YAxis>
         <YAxis
          yAxisId="right"
          orientation="right"
          axisLine={false}
          tickLine={false}
          tick={{ fontSize: 12, fill: '#666' }}
-         label={{ value: '股價', angle: 0, position: 'insideTopRight' }}
-        />
+        >
+         <Label value="%" position="insideTopRight" offset={-100} />
+        </YAxis>
         <Tooltip content={<CustomTooltip />} />
-        <Legend />
+        <Legend align="left" verticalAlign="top" wrapperStyle={{ top: 10 }} />
         <Bar
          yAxisId="left"
          dataKey="revenue"
          fill="#fbbf24"
          name="每月營收"
+         barSize={6}
          radius={[2, 2, 0, 0]}
         />
         <Line
          yAxisId="right"
          type="monotone"
-         dataKey="stockPrice"
+         dataKey="yoy"
          stroke="#ef4444"
          strokeWidth={3}
-         name="月均價"
+         name="單月營收年增率"
          dot={{ fill: '#ef4444', strokeWidth: 2, r: 4 }}
         />
        </ComposedChart>
@@ -139,19 +192,19 @@ const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
    <Paper elevation={3} className={styles.dataSection}>
     <CardContent>
      <Box className={styles.sectionHeader}>
-      <ButtonGroup variant="contained" size="small" className={styles.tabGroup}>
+      <ButtonGroup size="small" className={styles.tabGroup}>
        <Button
         className={stockDataActiveTab === 'detailed' ? styles.activeDataTab : styles.inactiveDataTab}
         onClick={() => setStockDataActiveTab('detailed')}
        >
         詳細數據
        </Button>
-       <Button
+       {/* <Button
         className={stockDataActiveTab === 'analysis' ? styles.activeDataTab : styles.inactiveDataTab}
         onClick={() => setStockDataActiveTab('analysis')}
        >
         指標解釋
-       </Button>
+       </Button> */}
       </ButtonGroup>
      </Box>
 
@@ -160,35 +213,30 @@ const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
        <thead>
         <tr>
          <th className={styles.headerCell}>年度/月份</th>
-         {monthlyRevenueData.map((m) => (
-          <th key={m.period} className={styles.dataHeaderCell}>{m.period}</th>
+         {monthlyChartData.map((m) => (
+          <th key={m.label} className={styles.dataHeaderCell}>{m.label}</th>
          ))}
         </tr>
        </thead>
        <tbody>
         <tr>
          <td className={styles.rowHeaderCell}>每月營收</td>
-         {monthlyRevenueData.map((m) => (
-          <td key={`rev-${m.period}`} className={styles.dataCell}>
-           {m.revenue.toLocaleString('zh-TW')}
+         {monthlyChartData.map((m) => (
+          <td key={`rev-${m.label}`} className={styles.dataCell}>
+           {m.revenue != null ? m.revenue.toLocaleString('zh-TW') : '-'}
           </td>
          ))}
         </tr>
         <tr>
          <td className={styles.rowHeaderCell}>單月營收年增率 (%)</td>
-         {monthlyRevenueData.map((m) => (
-          <td key={`gr-${m.period}`} className={styles.dataCell}>
-           {m.growthRate}
+         {monthlyChartData.map((m) => (
+          <td key={`yoy-${m.label}`} className={styles.dataCell}>
+           {m.yoy != null ? m.yoy : '-'}
           </td>
          ))}
         </tr>
        </tbody>
       </table>
-
-      {/* Horizontal scrollbar */}
-      <Box className={styles.scrollbarContainer}>
-       <Box className={styles.scrollbar}></Box>
-      </Box>
      </Box>
 
      <Box className={styles.footerNote}>
@@ -201,40 +249,8 @@ const StockDashboard: React.FC<{ stockData: API.Stock[] }> = ({ }) => {
     </CardContent>
    </Paper>
 
-   {/* Industry Rankings Section */}
-   <Box className={styles.rankingSection}>
-    <CardContent>
-     <Typography className={styles.sectionTitle}>
-      台積電每月營收在相關產業中的排名
-     </Typography>
 
-     <Grid container spacing={3} className={styles.rankingGrid}>
-      {industryRankings.map((ranking, index) => (
-       <Grid size={{ xs: 12, sm: 6, md: 4 }} style={{ padding: 0 }} key={index}>
-        <Card className={styles.rankingCard}>
-         <CardContent>
-          <Box className={styles.rankingItem}>
-           <Box className={styles.rankingInfo}>
-            <Typography className={styles.categoryName}>{ranking.category}</Typography>
-            <Typography className={styles.rankDescription}>台積電在此族群中排第 {ranking.rank} 名</Typography>
-            <Button size="small" variant="text" className={styles.viewRankingLink}>查看完整排名</Button>
-           </Box>
-           <span className={styles.verticalDivider} />
-           <Box className={styles.rankRight}>
-            <Box className={styles.rankNumberRow}>
-             <span className={styles.rankNumberLarge}>{ranking.rank}</span>
-             <span className={styles.rankUnit}>名</span>
-            </Box>
-            <div className={styles.rankSub}>/ 共 {ranking.totalCompanies} 家</div>
-           </Box>
-          </Box>
-         </CardContent>
-        </Card>
-       </Grid>
-      ))}
-     </Grid>
-    </CardContent>
-   </Box>
+
   </Container>
  );
 };

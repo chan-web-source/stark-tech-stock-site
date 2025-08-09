@@ -46,9 +46,6 @@ const Home: React.FC = () => {
   return (
     isLoading ? <Loading /> : <>
       <Header />
-      <PromoCodeBlock
-        promoText={t('home.promoText')}
-      />
       <div className={style.component}>
         <LeftPanel />
         <section className="container">
@@ -61,9 +58,7 @@ const Home: React.FC = () => {
           </div>
         </section>
       </div>
-      <Spacer space={55} />
 
-      <Footer />
     </>
   )
 };

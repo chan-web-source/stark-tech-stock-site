@@ -5,6 +5,7 @@
 
 .component {
   display: flex;
+  margin-top: 2rem;
   /* flex-wrap: wrap; */
 }
 

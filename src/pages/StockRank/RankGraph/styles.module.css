@@ -1,0 +1,162 @@
+.mainTitle {
+  color: #666;
+  font-weight: 500 !important;
+  margin-bottom: 24px !important;
+  text-align: center;
+}
+
+.card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cardContent {
+  padding: 24px !important;
+}
+
+.categoryTitle {
+  font-weight: 600 !important;
+  color: #333;
+  margin-bottom: 20px !important;
+  font-size: 0.8rem;
+  padding-left: 6px;
+}
+
+.headerRow {
+  padding: 0 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.headerText {
+  color: #666 !important;
+  font-weight: 500 !important;
+}
+
+.headerTextRight {
+  color: #666 !important;
+  font-weight: 500 !important;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.stockList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.stockRow {
+  padding: 6px 14px;
+  border-radius: 0;
+  transition: background-color 0.2s ease;
+}
+
+.stockRow:nth-child(odd) {
+  background-color: #f6f8fa;
+}
+
+.stockRow:hover {
+  background-color: #f9f9f9;
+}
+
+.rankBadge {
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.goldRank { background-color: #daa520; }
+.silverRank { background-color: #888888; }
+.bronzeRank { background-color: #cd853f; }
+.defaultRank { background-color: #888888; }
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding-left: 12px;
+}
+
+.stockId {
+  color: #2196f3 !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.stockName {
+  color: #2196f3 !important;
+  font-weight: 400 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.revenue {
+  color: #333 !important;
+  font-weight: 600 !important;
+  text-align: right;
+  justify-self: end;
+  padding-right: 24px;
+}
+
+.expandButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.expandButton {
+  color: #2196f3 !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+.expandButton:hover {
+  background-color: rgba(33, 150, 243, 0.04) !important;
+}
+
+.rankBadgeContainer { padding-left: 12px; }
+
+.typeColumn {
+  color: #1976d2 !important;
+  font-weight: 500 !important;
+  text-align: center;
+  background-color: #e3f2fd;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem !important;
+  width: 100%;
+  justify-self: center;
+  display: flex;
+}
+
+.industryCategory {
+  color: #666 !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+  margin-top: 2px !important;
+}
+
+@media (max-width: 600px) {
+  .stockRow { padding: 8px 4px; }
+  .companyInfo { flex-direction: row; align-items: flex-start; gap: 1px; padding-left: 24px; }
+  .revenue { min-width: 100px; font-size: 0.9rem; }
+  .headerTextRight { font-size: 0.875rem; }
+}
+
+

@@ -45,17 +45,17 @@ const Header: React.FC = () => {
     <AppBar position="fixed" className={style.stockHeader} elevation={0}>
       <Toolbar className={style.stockContainer}>
         {/* Logo Section */}
-        <Box className={style.logoSection}>
+        {/* <Box className={style.logoSection}>
           <Box className={style.logoIcon}>
             <AccountCircle sx={{ color: 'white', fontSize: 24 }} />
           </Box>
           <Typography variant="h6" className={style.logoText}>
             股票平台
           </Typography>
-        </Box>
+        </Box> */}
 
         {/* Navigation Menu */}
-        <Box component="nav" className={style.navigationMenu}>
+        {/* <Box component="nav" className={style.navigationMenu}>
           {navItems.map((item) => (
             <Box
               key={item.name}
@@ -97,18 +97,18 @@ const Header: React.FC = () => {
               )}
             </Box>
           ))}
-        </Box>
+        </Box> */}
 
         {/* Search Bar */}
         <Box className={style.searchContainer}>
           <TextField
-            placeholder="輸入台/美股代號,查看公司價值"
+            placeholder="輸入台 / 美股代號，查看公司價值"
             variant="outlined"
             size="small"
             className={style.searchField}
             fullWidth
             sx={{
-              minWidth: '300px',
+              minWidth: '520px',
               '& .MuiOutlinedInput-root': {
                 backgroundColor: 'white',
                 borderRadius: '8px',
@@ -123,8 +123,8 @@ const Header: React.FC = () => {
                 },
               },
               '& .MuiInputBase-input': {
-                fontSize: '14px',
-                padding: '12px 16px',
+                fontSize: '16px',
+                padding: '12px 18px',
                 '&::placeholder': {
                   color: '#999',
                   opacity: 1,
@@ -147,7 +147,7 @@ const Header: React.FC = () => {
         </Box>
 
         {/* User Actions */}
-        <Box className={style.userActions}>
+        {/* <Box className={style.userActions}>
           <Button
             className={style.loginButton}
             disableRipple
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
           >
             免費註冊
           </Button>
-        </Box>
+        </Box> */}
       </Toolbar>
     </AppBar>
   );

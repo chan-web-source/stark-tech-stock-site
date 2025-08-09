@@ -30,6 +30,14 @@ body {
   overflow-x: hidden;
 }
 
+.sectionTitle {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  font-size: 0.8rem;
+}
+
 iframe {
   border: 0
 }

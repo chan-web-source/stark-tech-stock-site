@@ -32,7 +32,11 @@ const Footer: React.FC = () => {
               </Typography>
               <Box className={styles.sourceText}>
                 {sourceInfo.map((text, i) => (
-                  <Typography key={i} className={styles.sourceParagraph}>
+                  <Typography
+                    key={i}
+                    className={styles.sourceParagraph}
+                    sx={{ fontSize: '0.67rem', lineHeight: 1.6 }}
+                  >
                     {text}
                   </Typography>
                 ))}

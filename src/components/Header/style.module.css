@@ -134,9 +134,9 @@
 /* 搜索栏 */
 .searchContainer {
   flex: 1;
-  max-width: 500px;
-  margin: 0 32px;
-  min-width: 300px;
+  max-width: 720px;
+  margin: 0 16px;
+  min-width: 360px;
 }
 
 .searchInput {
@@ -146,12 +146,12 @@
 
 .searchField {
   width: 100%;
-  min-width: 300px;
-  padding: 12px 16px;
-  padding-right: 48px;
+  min-width: 360px;
+  padding: 12px 18px;
+  padding-right: 52px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   background-color: white;
   transition: border-color 0.2s ease;
 }
@@ -171,11 +171,11 @@
 
 .searchIcon {
   position: absolute;
-  right: 16px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: #666;
-  font-size: 16px;
+  font-size: 18px;
   pointer-events: none;
 }
 
@@ -242,7 +242,7 @@
   }
 
   .searchContainer {
-    max-width: 300px;
+    max-width: 600px;
     margin: 0 16px;
   }
 }

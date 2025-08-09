@@ -170,8 +170,19 @@
 
 /* Tab Group Styling */
 .tabGroup {
- box-shadow: none;
  border-radius: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+
+.topButton {
+ display: flex;
+}
+
+.topButtonText {
+ padding-left: 12px;
+ font-size: 0.6rem;
 }
 
 .activeDataTab {
@@ -260,6 +271,7 @@
  text-align: right;
  font-weight: 400;
  padding-right: 16px;
+ overflow: hidden;
 }
 
 /* 依照截圖：第一筆資料列白色、第二筆資料列淡灰色，形成條紋效果 */
@@ -272,22 +284,7 @@
 }
 
 /* Scrollbar Container */
-.scrollbarContainer {
- position: relative;
- height: 12px;
- background-color: #f5f5f5;
- border-top: 1px solid #d0d0d0;
-}
-
-.scrollbar {
- position: absolute;
- right: 20px;
- top: 2px;
- width: 60px;
- height: 8px;
- background-color: #bbb;
- border-radius: 4px;
-}
+/* 移除自訂水平卷軸樣式 */
 
 /* Footer Note */
 .footerNote {
@@ -310,13 +307,7 @@
  margin: 0;
 }
 
-.sectionTitle {
- font-weight: 600;
- color: #2d3748;
- margin-bottom: 24px;
- padding-bottom: 12px;
- font-size: 0.8rem;
-}
+
 
 .rankingGrid {
  margin-top: 20px;
